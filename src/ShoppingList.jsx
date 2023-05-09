@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 
-export default function ShoppingList({ items, name, addNew, remove }) {
+export default function ShoppingList({ items, name }) {
   const [newItem, setNewItem] = useState('')
   const [toggle, setToggle] = useState(false)
+  const [listItems, setListItems] = useState(items)
 
   let itemsDisplay = items.map((item, index) => (
     <li
@@ -16,19 +17,31 @@ export default function ShoppingList({ items, name, addNew, remove }) {
     </li>
   ))
 
+  function addNewItem(item) {
+    listItems.push(item)
+    setListItems(listItems)
+    setToggle(!toggle)
+  }
+
+  function removeItem(item) {
+    listItems.splice(items.indexOf(item), 1)
+    setListItems(listItems)
+    setToggle(!toggle)
+  }
+
   function handleDragEnd(e) {
     let draggedItem = e.dataTransfer.getData('listItem')
-    remove(draggedItem, name)
-    setToggle(!toggle)
+    removeItem(draggedItem)
   }
 
   function handleSubmit(e) {
     e.preventDefault()
     if (newItem.trim().length > 0) {
       setNewItem('')
-      addNew(newItem, name)
+      addNewItem(newItem)
     }
   }
+
   function handleDragStart(e) {
     e.dataTransfer.setData('listItem', e.target.innerHTML)
   }
@@ -36,11 +49,9 @@ export default function ShoppingList({ items, name, addNew, remove }) {
   function handleDragDrop(e) {
     e.preventDefault()
     let draggedItem = e.dataTransfer.getData('listItem')
-
-    addNew(draggedItem, name)
-
-    setToggle(!toggle)
+    addNewItem(draggedItem, name)
   }
+
   function allowDrop(e) {
     e.preventDefault()
   }

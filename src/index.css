@@ -1,0 +1,68 @@
+body {
+  text-align: center;
+  background-color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+}
+
+.header{
+  height: 3rem;
+  background-color: lightgrey;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container>div{
+  width: 15rem;
+  margin: 0 1rem;
+}
+
+.shoppingList{
+  background-color: lightgrey;
+  border-radius: 5px;
+  height: 30rem; 
+  width: 100%;
+  position: relative;
+}
+
+.listStyle{
+  list-style-type: none;
+  padding: 1rem;
+  height:75%;
+  overflow-y: scroll;
+}
+
+.listStyle>li{
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.addNew{
+  background-color: lightgrey;
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+}
+
+input[type=text]{
+  width:60%;
+  padding:0.5rem;
+  border-radius: 5px;
+  border: 0px
+}
+
+button {
+  padding:0.5rem;
+  margin-left: 0.5rem;
+}
